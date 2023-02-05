@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+"""BaseModel Class for AirBnb project"""
 import uuid
 from datetime import datetime
-"""BaseModel Class for AirBnb project"""
 
 
 class BaseModel:
@@ -15,7 +15,8 @@ class BaseModel:
 
     def __str__(self):
         """str function"""
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        class_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
 
     def save(self):
         """save function"""
@@ -24,7 +25,7 @@ class BaseModel:
     def to_dict(self):
         """to_dict function"""
         result = self.__dict__.copy()
-        result['__class__'] = type(self).__name__
-        result['created_at'] = self.created_at.isoformt()
-        result['updated_at'] = self.updated_at.isoformat()
+        result["__class__"] = self.__class__.__name__
+        result["created_at"] = self.created_at.isoformat()
+        result["updated_at"] = self.updated_at.isoformat()
         return result
