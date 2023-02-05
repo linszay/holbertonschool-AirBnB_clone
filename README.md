@@ -19,7 +19,7 @@ The project contains:
 - Unittests to validate all classes as well as the storage engine.
 
 ##Flowchart
-
+test
 
 ## <center>How to Use (with examples)
 The user of the console will be able to utilize it in an interactive or non-interactive mode as desired. Running `./console.py` in terminal will open up a prompt that the user can call functions from. For example:
