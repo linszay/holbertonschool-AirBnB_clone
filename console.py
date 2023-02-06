@@ -7,16 +7,14 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
-    while input == "":
-        pass
-
-    def do_EOF(self, line):
-        "Exit"
+    def do_quit(self, line):
+        """Quit command to exit the program"""
         return True
 
-    def do_quit(self, line):
-        "Quit command to exit the program\n"
-        raise SystemExit
+    def do_EOF(self, line):
+        """Exit on EOF (Control-D)"""
+        print()
+        return True
 
 
 if __name__ == '__main__':
