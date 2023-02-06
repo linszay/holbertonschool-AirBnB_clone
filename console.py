@@ -1,95 +1,85 @@
 #!/usr/bin/python3
-"""console"""
-
+"""console.py pycodestyle updated"""
 import cmd
 import json
-from models import storage
+import shlex
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    prompt = '(hbnb) '
+    """
+    Command class for the HBNB console.
+    """
+    prompt = "(hbnb) "
+    classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+    }
 
-    def do_create(self, line):
-        """Create a new instance of BaseModel, saves it (to the JSON file)
-        and prints the id.
+    def do_quit(self, args):
         """
-        if line:
-            args = line.split()
-            if args[0] in ["BaseModel"]:
-                new_instance = eval(args[0])()
-                new_instance.save()
-                print(new_instance.id)
-            else:
-                print("** class doesn't exist **")
-        else:
+        Quit command to exit the program
+        """
+        return True
+
+    def do_EOF(self, args):
+        """
+        EOF command to exit the program
+        """
+        return True
+
+    def do_create(self, args):
+        """
+        Creates a new instance of a class and saves it to a JSON file.
+        """
+        if not args:
             print("** class name missing **")
+            return
+        class_name = args.split()[0]
+        if class_name not in self.classes:
+            print("** class doesn't exist **")
+            return
+        new_instance = self.classes[class_name]()
+        new_instance.save()
+        print(new_instance.id)
 
-    def do_show(self, line):
-        """Prints the string representation of an instance based on the class
-        name and id.
+    def do_show(self, args):
         """
-        if line:
-            args = line.split()
-            if args[0] in ["BaseModel"]:
-                if len(args) > 1:
-                    key = args[0] + "." + args[1]
-                    if key in storage.all().keys():
-                        print(storage.all()[key])
-                    else:
-                        print("** no instance found **")
-                else:
-                    print("** instance id missing **")
-            else:
-                print("** class doesn't exist **")
-        else:
+        Prints the string representation of an instance based on class name and id.
+        """
+        if not args:
             print("** class name missing **")
+            return
+        class_name, instance_id = self.split_args(args)
+        if class_name not in self.classes:
+            print("** class doesn't exist **")
+            return
+        if not instance_id:
+            print("** instance id missing **")
+            return
+        key = "{}.{}".format(class_name, instance_id)
+        if key not in models.storage.all():
+            print("** no instance found **")
+            return
+        print(models.storage.all()[key])
 
-    def do_destroy(self, line):
-        """Deletes an instance based on the class name and id (save the change
-        into the JSON file).
+    def do_destroy(self, args):
         """
-        if line:
-            args = line.split()
-            if args[0] in ["BaseModel"]:
-                if len(args) > 1:
-                    key = args[0] + "." + args[1]
-                    if key in storage.all().keys():
-                        del storage.all()[key]
-                        storage.save()
-                    else:
-                        print("** no instance found **")
-                else:
-                    print("** instance id missing **")
-            else:
-                print("** class doesn't exist **")
-        else:
+        Deletes an instance based on class name and id and saves changes to JSON file.
+        """
+        if not args:
             print("** class name missing **")
-
-    def do_all(self, line):
-        """Prints all string representation of all instances based or not on
-        the class name.
-        """
-        instances = storage.all()
-        if line:
-            args = line.split()
-            if args[0] in ["BaseModel"]:
-                for key in instances:
-                    if key.startswith(args[0]):
-                        print(instances[key])
-            else:
-                print("** class doesn't exist **")
-        else:
-            for instance in instances.values():
-                print(instance)
-
-    def do_update(self, line):
-        """Updates an instance based on the class name and id by adding or
-        updating attribute (save the change into the JSON file).
-        """
-        if line:
-            args = line.split()
-            if args[0] in ["BaseModel"]:
-                if len(args) > 1:
-                    key = args[0] + "." + args[1]
-                    if key in storage.all().keys():
+            return
+        class_name, instance_id = self.split_args(args)
+       
