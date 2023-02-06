@@ -30,7 +30,9 @@ This is an educational purposes clone from [AirBnB](https://www.airbnb.com/)
 
 ## <center>How to Use (with examples)
 The user of the console will be able to utilize it in an interactive or non-interactive mode as desired. Running `./console.py` in terminal will open up a prompt that the user can call functions from. 
+
 E.g.
+
     ./console.py
     (hbtn) help
     Documented commands (type help <topic>):
@@ -38,6 +40,7 @@ E.g.
     EOF  all  create  destroy  help  quit  show  update
 
 Commands may be executed non-interactively by piping them into the console.
+
 E.g.
 
 Both
