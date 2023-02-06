@@ -58,7 +58,7 @@ class Console(cmd.Cmd):
 
     def do_destroy(self, arg):
         """
-        Deletes an instance based on the class name and id, saving the change
+        Deletes an instance based on the class name and id saving the change
         into the JSON file.
         """
         args = split(arg)
