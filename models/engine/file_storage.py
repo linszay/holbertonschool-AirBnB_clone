@@ -19,7 +19,7 @@ class FileStorage:
     def new(self, obj):
         """sets the obj with key such as <obj class name>.id"""
         dict_key = "{} {}".format(type(object).__class__.__name__, object.id)
-        object.__class__.__name__ = dict_key
+        (object.__class__.__name__, object.id) = dict_key
 
     def save(self):
         """serializes objs to JSON file"""
