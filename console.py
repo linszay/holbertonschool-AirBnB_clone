@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""console.py program, contains the entry point
+"""console.py - entry point
     of the command interpreter"""
 import cmd
 
@@ -17,10 +17,6 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         "Quit command to exit the program\n"
         raise SystemExit
-
-    """help action is provided by default,
-        but should be kept updated and documented
-        as we work through tasks"""
 
 
 if __name__ == '__main__':
