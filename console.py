@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""console.py pycodestyle updated"""
+"""console.py
+"""
 import cmd
 import json
 import shlex
@@ -82,4 +83,5 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name, instance_id = self.split_args(args)
+       
        
