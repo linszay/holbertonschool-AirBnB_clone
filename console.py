@@ -1,22 +1,24 @@
 #!/usr/bin/python3
-"""console.py - entry point
-    of the command interpreter"""
+"""CONSOLE"""
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
+    """Class HBNBCommand contains the entry point of the command interpreter"""
     prompt = '(hbnb) '
 
-    while input == "":
-        pass
-
-    def do_EOF(self, line):
-        "Exit"
-        return True
-
-    def do_quit(self, line):
-        "Quit commany to exit program\n"
+    def do_quit(self, args):
+        """quit command to exit the program"""
         raise SystemExit
 
-    if __name__ == '__main__':
-        HBNBCommand().cmdloop()
+    def do_EOF(self, args):
+        """EOF command to exit the program"""
+        raise SystemExit
+
+    def emptyline(self):
+        """Empty line or ENTER entered by user should not execute anything"""
+        return False
+
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
