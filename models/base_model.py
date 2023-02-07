@@ -2,9 +2,7 @@
 """BaseModel Class for AirBnb project"""
 import uuid
 from datetime import datetime
-from models.engine.file_storage import FileStorage
-
-storage = FileStorage()
+import models
 
 
 class BaseModel:
@@ -32,7 +30,7 @@ class BaseModel:
     def save(self):
         """save function"""
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """to_dict function"""
