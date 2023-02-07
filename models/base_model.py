@@ -21,16 +21,17 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """str function"""
         class_name = self.__class__.__name__
         return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
 
-    def save(self, dict):
+    def save(self):
         """save function"""
         self.updated_at = datetime.now()
-        models.storage.save(self.to_dict())
+        models.storage.save()
 
     def to_dict(self):
         """to_dict function"""
