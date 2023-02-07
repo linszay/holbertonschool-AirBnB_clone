@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Console import basemodel """
 import cmd
-from models.base_model import BaseModel
+from models.base_model import *
 from models import storage
 from models.user import User
 from models.state import State
@@ -9,14 +9,13 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-valid_classes = {"BaseModel": BaseModel}
 
 
 class HBNBCommand(cmd.Cmd):
     """ Console Class """
     prompt = "(hbnb) "
-    keys = ["Review", "Place", "State",
-            "User", "BaseModel", "City", "Amenity"]
+    ok_class = ["Review", "Place", "State",
+                "User", "BaseModel", "City", "Amenity"]
 
     def do_quit(self, line):
         """ Quit Command to exit the program """
@@ -33,14 +32,14 @@ class HBNBCommand(cmd.Cmd):
     def check_class(self, value):
         """ Check if:
         a) a class name is given
-        b) class name exists in valid_classes dictionary
+        b) class name exists in HBNBCommand dictionary
         """
         if value == "" or value is None:
             print("** class name missing **")
             return False
 
         parsed_val = value.split(' ')
-        if parsed_val[0] not in valid_classes.keys():
+        if parsed_val[0] not in HBNBCommand.ok_classes:
             print("** class doesn't exist **")
             return False
 
@@ -56,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         key = "{}.{}".format(value[0], value[1])
-        if key not in storage.all().keys():
+        if key not in storage.all().ok_classes():
             print("** no instance found **")
             return False
 
@@ -65,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """ Create new instance of object """
         if self.check_class(arg):
-            new = valid_classes[arg]()
+            new = HBNBCommand[arg]()
             new.save()
             print(new.id)
 
@@ -89,10 +88,10 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """ print all instances """
         if arg == "" or arg is None:
-            for key in storage.all().keys():
+            for key in storage.all().ok_classes():
                 print(storage.all()[key])
-        elif arg in valid_classes.keys():
-            for key in storage.all().keys():
+        elif arg in HBNBCommand.ok_classes():
+            for key in storage.all().ok_classes():
                 nameio = key.split('.')
                 if nameio[0] == arg:
                     print(storage.all()[key])
@@ -116,9 +115,9 @@ class HBNBCommand(cmd.Cmd):
                     return False
                 my_dict = storage.all()[valid_key].to_dict()
 
-                if word[2] not in my_dict.keys():
+                if word[2] not in my_dict.ok_classes():
                     print("** value missing **")
-                elif valid_key in storage.all().keys():
+                elif valid_key in storage.all().ok_classes():
                     setattr(storage.all()[valid_key], word[2], word[3])
 
 
