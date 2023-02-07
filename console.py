@@ -57,9 +57,9 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """ Create new instance of object """
         if self.check_class(arg):
-                new = valid_classes[arg]()
-                new.save()
-                print(new.id)
+            new = valid_classes[arg]()
+            new.save()
+            print(new.id)
 
     def do_show(self, arg):
         """ Prints string representation of instance based on class and id """
@@ -112,6 +112,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** value missing **")
                 elif valid_key in storage.all().keys():
                     setattr(storage.all()[valid_key], word[2], word[3])
+
 
 if __name__ == '__main__':
     """yes"""
