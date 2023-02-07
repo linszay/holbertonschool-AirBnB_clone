@@ -4,8 +4,6 @@ import uuid
 from datetime import datetime
 import models
 
-storage = FileStorage()
-
 
 class BaseModel:
     """creating the base class for the project"""
@@ -32,7 +30,7 @@ class BaseModel:
     def save(self):
         """save function"""
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """to_dict function"""

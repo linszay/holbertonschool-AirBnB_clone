@@ -6,10 +6,8 @@ from models.base_model import BaseModel
 
 class FileStorage:
     """creating FileStorage class"""
-
-    def __init__(self, file_path, objects):
-        self.__file_path = str(json.file)
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
         """function returns all"""
