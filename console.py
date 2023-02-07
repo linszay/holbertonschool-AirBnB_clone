@@ -14,8 +14,8 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """ Console Class """
     prompt = "(hbnb) "
-    ok_class = ["Review", "Place", "State",
-                "User", "BaseModel", "City", "Amenity"]
+    ok_classes = ["Review", "Place", "State",
+                  "User", "BaseModel", "City", "Amenity"]
 
     def do_quit(self, line):
         """ Quit Command to exit the program """
@@ -85,16 +85,13 @@ class HBNBCommand(cmd.Cmd):
                 del storage.all()[valid_key]
                 storage.save()
 
-    def do_all(self, arg):
-        """ print all instances """
-        if arg == "" or arg is None:
-            for key in storage.all().ok_classes():
-                print(storage.all()[key])
-        elif arg in HBNBCommand.ok_classes():
-            for key in storage.all().ok_classes():
-                nameio = key.split('.')
-                if nameio[0] == arg:
-                    print(storage.all()[key])
+    def do_all(self, line):
+        """show us da tingz"""
+        if line == "":
+            print([str(ii) for ii in storage.all().values()])
+            return
+        if line in HBNBCommand.ok_classes:
+            print([str(ii) for ik, ii in storage.all().items() if line in ik])
         else:
             print("** class doesn't exist **")
 
