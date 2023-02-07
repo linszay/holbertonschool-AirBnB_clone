@@ -1,5 +1,7 @@
+#!/usr/bin/python3
+"""console.py import cmd"""
+
 import cmd
-import shlex
 import models
 from models.base_model import BaseModel
 
