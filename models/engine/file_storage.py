@@ -18,19 +18,15 @@ class FileStorage:
         dict_key = "{}.{}".format(type(obj).__class__.__name__, obj.id)
         self.__objects[dict_key] = obj
 
-    def save(self):
+    def save(self, dict):
         """serializes objs to JSON file"""
-        objects = {for key in self.__objects: objects[key] = self.__objects[key].to_dict()}
         with open(self.__file_path, "w", encoding="utf-8") as f:
-            json.dump(objects, f)
+            json.dump(dict, f)
 
     def reload(self):
         """deserializes JSON file to objs"""
         try:
             with open(self.__file_path, "r", encoding="utf-8") as f:
-                objects = json.load(f)
-                for key in objects:
-                    class_name, id = key.split(".")
-                    self.__objects[key] = globals()[class_name](**objects[key])
+                self.__objects = json.load(f)
         except FileNotFoundError:
             pass

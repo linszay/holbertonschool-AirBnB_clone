@@ -27,10 +27,10 @@ class BaseModel:
         class_name = self.__class__.__name__
         return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
 
-    def save(self):
+    def save(self, dict):
         """save function"""
         self.updated_at = datetime.now()
-        models.storage.save()
+        models.storage.save(self.to_dict())
 
     def to_dict(self):
         """to_dict function"""
