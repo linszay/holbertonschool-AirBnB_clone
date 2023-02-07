@@ -2,7 +2,7 @@
 """BaseModel Class for AirBnb project"""
 import uuid
 from datetime import datetime
-from models.engine.file_storage import FileStorage
+import models
 
 storage = FileStorage()
 

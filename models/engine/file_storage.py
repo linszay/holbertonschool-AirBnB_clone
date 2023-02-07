@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import json
-import os
-import models
+from models.base_model import BaseModel
 """creating filestorage class and dict to json"""
 
 
@@ -18,8 +17,8 @@ class FileStorage:
 
     def new(self, obj):
         """sets the obj with key such as <obj class name>.id"""
-        dict_key = "{} {}".format(type(object).__class__.__name__, object.id)
-        (object.__class__.__name__, object.id) = dict_key
+        dict_key = "{}.{}".format(type(obj).__class__.__name__, obj.id)
+        self.__objects[dict_key] = obj
 
     def save(self):
         """serializes objs to JSON file"""
