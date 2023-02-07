@@ -2,6 +2,12 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
 """creating filestorage class and dict to json"""
 
 
@@ -31,7 +37,7 @@ class FileStorage:
             with open(self.__file_path, "r", encoding="utf-8") as f:
                 temp_dict = json.load(f)
                 for k, v in temp_dict.items():
-                    obj_id = k.split('.')
-                    self.__objects[k] = eval(obj_id[0])(**v)
+                    obj = eval(value['class'])(**v)
+                    self.__objects[k] = obj
         except FileNotFoundError:
             pass
