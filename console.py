@@ -8,9 +8,6 @@ from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
-    classes = {
-        "BaseModel": BaseModel,
-    }
 
     def do_create(self, args):
         """Create a new instance of BaseModel, save it, and print the id."""
