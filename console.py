@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """console airbnb"""
 import cmd
-import json
-from models import storage
+import models
 from models.base_model import BaseModel
+from models import storage
 from models.user import User
 from models.place import Place
 from models.state import State
