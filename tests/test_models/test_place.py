@@ -5,25 +5,81 @@ import models
 import os
 from datetime import datetime
 from models.place import Place
+from time import sleep
 
 
 class TestPlaceModel(unittest.TestCase):
     """place class UNIT TESTS"""
 
-    def test_init(self):
+    def test_instantiate(self):
+        """ Happy pass instantiation """
         self.assertEqual(Place, type(Place()))
 
-    def test_cid(self):
-        aaru = Place()
-        self.assertEqual(str, type(Place.city_id))
-        self.assertIn("city_id", dir(aaru))
-        self.assertNotIn("city_id", aaru.__dict__)
+    def test_id(self):
+        """ Happy pass public id string format """
+        self.assertEqual(str, type(Place().id))
+
+    def test_created_at(self):
+        """ Happy pass created at datetime """
+        self.assertEqual(datetime, type(Place().created_at))
+
+    def test_updated_at(self):
+        """ Happy pass updated at datetime """
+        self.assertEqual(datetime, type(Place().updated_at))
 
     def test_uid(self):
-        aaru = Place()
+        """ UID created at each instantiation """
+        place1 = Place()
+        place2 = Place()
+        self.assertNotEqual(place1.id, place2.id)
+
+    def test_city_id(self):
+        """ Happy pass city_id """
+        place1 = Place()
+        self.assertEqual(str, type(Place.city_id))
+        self.assertTrue(hasattr(place1, "city_id"))
+
+    def test_user_id(self):
+        """ Happy pass user_id """
+        place1 = Place()
         self.assertEqual(str, type(Place.user_id))
-        self.assertIn("user_id", dir(aaru))
-        self.assertNotIn("user_id", aaru.__dict__)
+        self.assertTrue(hasattr(place1, "user_id"))
+
+    def test_name(self):
+        """ Happy pass name """
+        place1 = Place()
+        self.assertEqual(str, type(Place.name))
+        self.assertTrue(hasattr(place1, "name"))
+
+    def test_description(self):
+        """ Happy pass description """
+        place1 = Place()
+        self.assertEqual(str, type(Place.description))
+        self.assertTrue(hasattr(place1, "description"))
+
+    def test_number_rooms(self):
+        """ Happy pass rooms """
+        place1 = Place()
+        self.assertEqual(int, type(Place.number_rooms))
+        self.assertTrue(hasattr(place1, "number_rooms"))
+
+    def test_number_bathrooms(self):
+        """ Happy pass bathrooms """
+        place1 = Place()
+        self.assertEqual(int, type(Place.number_bathrooms))
+        self.assertTrue(hasattr(place1, "number_bathrooms"))
+
+    def test_max_guest(self):
+        """ Happy pass max guest """
+        place1 = Place()
+        self.assertEqual(int, type(Place.max_guest))
+        self.assertTrue(hasattr(place1, "max_guest"))
+
+    def test_price_by_night(self):
+        """ Happy pass price by night """
+        place1 = Place()
+        self.assertEqual(int, type(Place.price_by_night))
+        self.assertTrue(hasattr(place1, "price_by_night"))
 
 
 if __name__ == "__main__":

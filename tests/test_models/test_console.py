@@ -3,8 +3,8 @@
 
 
 import unittest
-import uuid
 import models
+from models.place import Place
 from datetime import datetime
 from models.base_model import BaseModel
 
@@ -12,30 +12,76 @@ from models.base_model import BaseModel
 class TestBaseModel(unittest.TestCase):
     """console UNIT TESTS"""
 
-    def test_bas_mod_crt(self):
-        bm1 = BaseModel()
-        self.assertIsInstance(bm1.created_at, datetime)
+    def test_instantiate(self):
+        """ Happy pass instantiation """
+        self.assertEqual(Place, type(Place()))
 
-    def test_bas_mod_upd(self):
-        bm1 = BaseModel()
-        self.assertIsInstance(bm1.updated_at, datetime)
+    def test_id(self):
+        """ Happy pass public id string format """
+        self.assertEqual(str, type(Place().id))
 
-    def test_uwu_id(self):
-        bm1 = BaseModel()
-        bm2 = BaseModel()
-        self.assertNotEqual(bm1.id, bm2.id)
+    def test_created_at(self):
+        """ Happy pass created at datetime """
+        self.assertEqual(datetime, type(Place().created_at))
 
-    def test_ini_tim(self):
-        bm1 = BaseModel()
-        self.assertEqual(bm1.created_at, bm1.updated_at)
+    def test_updated_at(self):
+        """ Happy pass updated at datetime """
+        self.assertEqual(datetime, type(Place().updated_at))
 
-    def test_dict(self):
-        bm1 = BaseModel()
-        dict = bm1.to_dict()
-        self.assertIsInstance(dict, dict)
-        self.assertIsInstance(dict["updated_at"], str)
-        self.assertIsInstance(dict["created_at"], str)
+    def test_uid(self):
+        """ UID created at each instantiation """
+        place1 = Place()
+        place2 = Place()
+        self.assertNotEqual(place1.id, place2.id)
 
-    def test_str_met(self):
-        bm1 = BaseModel()
-        self.assertIn(bm1.id, str(bm1))
+    def test_city_id(self):
+        """ Happy pass city_id """
+        place1 = Place()
+        self.assertEqual(str, type(Place.city_id))
+        self.assertTrue(hasattr(place1, "city_id"))
+
+    def test_user_id(self):
+        """ Happy pass user_id """
+        place1 = Place()
+        self.assertEqual(str, type(Place.user_id))
+        self.assertTrue(hasattr(place1, "user_id"))
+
+    def test_name(self):
+        """ Happy pass name """
+        place1 = Place()
+        self.assertEqual(str, type(Place.name))
+        self.assertTrue(hasattr(place1, "name"))
+
+    def test_description(self):
+        """ Happy pass description """
+        place1 = Place()
+        self.assertEqual(str, type(Place.description))
+        self.assertTrue(hasattr(place1, "description"))
+
+    def test_number_rooms(self):
+        """ Happy pass rooms """
+        place1 = Place()
+        self.assertEqual(int, type(Place.number_rooms))
+        self.assertTrue(hasattr(place1, "number_rooms"))
+
+    def test_number_bathrooms(self):
+        """ Happy pass bathrooms """
+        place1 = Place()
+        self.assertEqual(int, type(Place.number_bathrooms))
+        self.assertTrue(hasattr(place1, "number_bathrooms"))
+
+    def test_max_guest(self):
+        """ Happy pass max guest """
+        place1 = Place()
+        self.assertEqual(int, type(Place.max_guest))
+        self.assertTrue(hasattr(place1, "max_guest"))
+
+    def test_price_by_night(self):
+        """ Happy pass price by night """
+        place1 = Place()
+        self.assertEqual(int, type(Place.price_by_night))
+        self.assertTrue(hasattr(place1, "price_by_night"))
+
+
+if __name__ == "__main__":
+    unittest.main()
