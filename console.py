@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Console import basemodel """
 import cmd
-import json
 from models.base_model import *
 from models import storage
 from models.user import User
