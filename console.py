@@ -24,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
         'Amenity',
         'Review'
         }
-
+    res_att = ["created_at", "updated_at", "id"]
     def do_EOF(self, arg):
         """Exits the console"""
         return True
