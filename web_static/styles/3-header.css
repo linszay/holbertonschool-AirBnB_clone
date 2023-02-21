@@ -1,13 +1,14 @@
 header {
-    background-color: #FF0000;
+    background-color: white;
     height: 70px;
     width: 100%;
-    color: white;
     border-bottom: 1px #CCCCCC;
 }
 
-img {
-    display: block;
-    margin-left: auto 20px;
-    margin-right: auto;
+.logo {
+    background-image: url('../images/logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 150px;
 }
