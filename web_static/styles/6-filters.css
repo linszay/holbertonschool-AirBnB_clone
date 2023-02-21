@@ -48,7 +48,7 @@ h4 {
     font-size: 14px;
 }
 
-.popover {
+.filters .popover {
     background-color: #FAFAFA;
     width: 100%;
     border: 1px solid #DDDDDD;
@@ -58,7 +58,7 @@ h4 {
 }
 
 h2 {
-    font-size: 36px;
+    font-size: 16px;
 }
 
 .filters .locations:hover .popover,
