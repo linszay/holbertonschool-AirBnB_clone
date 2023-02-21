@@ -1,0 +1,14 @@
+header
+{
+    background-color: #FF0000;
+    height: 70px;
+    width: 100%;
+    color: white;
+    border-bottom: 1px #CCCCCC;
+}
+img
+{
+    display: block;
+    margin-left: auto 20px;
+    margin-right: auto;
+}
